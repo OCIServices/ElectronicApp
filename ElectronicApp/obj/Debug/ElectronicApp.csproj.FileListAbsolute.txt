@@ -1,0 +1,11 @@
+C:\Users\mattlizzie\Desktop\ElectronicApp\ElectronicApp\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\mattlizzie\Desktop\ElectronicApp\ElectronicApp\bin\ElectronicApp.dll
+C:\Users\mattlizzie\Desktop\ElectronicApp\ElectronicApp\bin\ElectronicApp.pdb
+C:\Users\mattlizzie\Desktop\ElectronicApp\ElectronicApp\obj\Debug\ElectronicApp.dll
+C:\Users\mattlizzie\Desktop\ElectronicApp\ElectronicApp\obj\Debug\ElectronicApp.pdb
+C:\source code\EAPP W ENROLLMENTS\ElectronicApp\ElectronicApp\bin\ElectronicApp.dll.config
+C:\source code\EAPP W ENROLLMENTS\ElectronicApp\ElectronicApp\bin\ElectronicApp.dll
+C:\source code\EAPP W ENROLLMENTS\ElectronicApp\ElectronicApp\bin\ElectronicApp.pdb
+C:\source code\EAPP W ENROLLMENTS\ElectronicApp\ElectronicApp\obj\Debug\ElectronicApp.dll
+C:\source code\EAPP W ENROLLMENTS\ElectronicApp\ElectronicApp\obj\Debug\ElectronicApp.pdb
+C:\source code\EAPP W ENROLLMENTS\ElectronicApp\ElectronicApp\obj\Debug\ElectronicApp.csprojResolveAssemblyReference.cache

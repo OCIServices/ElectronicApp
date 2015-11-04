@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="ElectronicApp_Storage" Class="ElectronicAppStorageDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=192.168.1.3;Initial Catalog=ElectronicApp_Storage;User ID=EAPPWEBUSER" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="ElectronicApp_StorageConnectionString" Provider="System.Data.SqlClient" />
+  <Function Name="dbo.uspInsertSubmission" Method="uspInsertSubmission">
+    <Parameter Name="SubmissionAttachmentID" Parameter="submissionAttachmentID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="OwnerID" Parameter="ownerID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Attachment" Parameter="attachment" Type="System.Data.Linq.Binary" DbType="Image" />
+    <Parameter Name="FileName" Parameter="fileName" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Extension" Parameter="extension" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="AddedBy" Parameter="addedBy" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.uspInsertBrokerImage" Method="uspInsertBrokerImage">
+    <Parameter Name="attid" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="owner" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="att" Type="System.Data.Linq.Binary" DbType="Image" />
+    <Parameter Name="fn" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="ext" Type="System.String" DbType="VarChar(10)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.uspDeleteBrokerImageByOwnerID" Method="uspDeleteBrokerImageByOwnerID">
+    <Parameter Name="owner" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.uspGetBrokerImageByOwnerID" Method="uspGetBrokerImageByOwnerID">
+    <Parameter Name="owner" Type="System.Guid" DbType="UniqueIdentifier" />
+    <ElementType Name="uspGetBrokerImageByOwnerIDResult">
+      <Column Name="AttachmentID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="AssociatedWith" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Attachment" Type="System.Data.Linq.Binary" DbType="Image NOT NULL" CanBeNull="false" />
+      <Column Name="FileName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Extension" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+</Database>

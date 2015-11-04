@@ -1,0 +1,84 @@
+﻿* {
+	margin:0;
+	padding:0;
+	}
+
+body {
+	background: #ffffff;
+	color: #545454;
+	padding: 13px 0 25px 0;
+	}
+	
+#LoginContainer {
+margin: 50px auto;
+width:540px;
+color: black;
+}
+
+#LoginTop {
+background:url(Images/Top.png) no-repeat bottom left;
+height: 98px;
+width: 540px;
+}
+
+#LoginTop h1{
+	font:2.6em  Helvetica, sans-serif;
+	font-weight:bold;
+	letter-spacing:0.02em;
+	margin: 0px;
+	padding-left: 270px;
+	padding-top:15px;
+	padding-bottom:0px;
+	color:#333333;
+	}
+
+#LoginMid
+{
+padding-top:35px;
+background:url(Images/smallMid.png) repeat-y bottom left;
+min-height: 100px;
+width: 540px;
+font-size:12px;
+display:block;
+}
+
+#LoginBottom{
+background:url(Images/bottom.png) repeat-y bottom left;
+height: 66px;
+width: 540px;
+}
+.red{
+	color: #b40000;
+	font:1.45em  Helvetica, sans-serif;
+	font-weight:bold;
+
+}
+
+.txtLogin
+{
+	padding-bottom:10px 0 0 0;
+
+}
+
+.btnLogin
+{
+	padding: 20px 60px 10px 30px;
+	float: right;
+}
+
+label.txtLogin
+{
+	font:1em  Helvetica, sans-serif;
+	font-weight:bold;
+	letter-spacing:0em;
+	color:#666666;
+	float:left;
+	padding-bottom:20px;
+	padding-left:90px;
+	width:90px;
+}
+
+.clearFloat
+{
+	clear:both;
+}

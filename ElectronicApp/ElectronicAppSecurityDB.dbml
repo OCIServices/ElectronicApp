@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="ElectronicApp_Security" Class="ElectronicAppSecurityDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=192.168.1.3;Initial Catalog=ElectronicApp_Security;User ID=EAPPWEBUSER" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="ElectronicApp_SecurityConnectionString" Provider="System.Data.SqlClient" />
+  <Function Name="dbo.uspLoginWebuser" Method="uspLoginWebuser">
+    <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="uspLoginWebuserResult">
+      <Column Name="AssociatedWith" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.uspInsertAttachmentData" Method="uspInsertAttachmentData">
+    <Parameter Name="ObjectID" Parameter="objectID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="OwnerID" Parameter="ownerID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Phrase" Parameter="phrase" Type="System.Data.Linq.Binary" DbType="Image" />
+    <Parameter Name="Vector" Parameter="vector" Type="System.Data.Linq.Binary" DbType="Image" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.uspLoginBrokeruser" Method="uspLoginBrokeruser">
+    <Parameter Name="login" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="password" Type="System.String" DbType="VarChar(200)" />
+    <ElementType Name="uspLoginBrokeruserResult">
+      <Column Name="associatedWith" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.uspCheckUsername" Method="uspCheckUsername">
+    <Parameter Name="User" Parameter="user" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="uspCheckUsernameResult">
+      <Column Name="UserID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.uspInsertWebUser" Method="uspInsertWebUser">
+    <Parameter Name="UserID" Parameter="userID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="OwnerID" Parameter="ownerID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Username" Parameter="username" Type="System.String" DbType="Text" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="Text" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>

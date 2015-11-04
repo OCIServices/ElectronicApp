@@ -1,0 +1,222 @@
+﻿* {
+	margin:0;
+	padding:0;
+	}
+
+body {
+	background: #ffffff;
+	color: #545454;
+	padding: 13px 0 25px 0;
+	}
+/*input[disabled='disabled'] {
+ background:#D6D5D9;
+ border: solid 1px #bbbbbb;
+}*/
+	
+
+#FormContainer {
+margin: 50px auto;
+width:795px;
+color: black;
+}
+
+#FormTop {
+background:url(Images/MainTop.png) no-repeat bottom left;
+height: 77px;
+width: 795px;
+}
+
+#FormTop h1{
+	font:2.0em  Helvetica, sans-serif;
+	font-weight:bold;
+	letter-spacing:0.02em;
+	margin: 0px;
+	padding-left: 100px;
+	padding-top:20px;
+	padding-bottom:0px;
+	color:#777777;
+	}
+
+#FormMid
+{
+padding-top:25px;
+padding-bottom: 35px;
+background:url(Images/MainMid.png) repeat-y bottom left;
+min-height: 300px;
+width: 795px;
+font-size:12px;
+font-family: Sans-Serif;
+display:block;
+}
+#FormMid p
+{
+	padding: 5px 0px 0px 30px;
+	margin:0px;
+	color: #444444;
+	font-weight: bold;
+}
+
+#Coverage
+{
+	padding-left: 50px;
+	min-height: 250px;
+}
+
+
+
+#Validation
+{
+	color: Red;
+	display: none;
+	width:780px;
+}
+
+#Validation P
+{
+	padding: 0 0 5px 45px;
+}
+
+#dependents
+{
+	font-size: 11px;
+}
+
+
+
+ul.ErrorsLeft
+{
+	padding-left:70px;
+	padding-bottom:20px;
+	float: left;
+	width:300px;
+}
+ul.ErrorsRight
+{
+	padding-right:70px;
+	padding-bottom:20px;
+	float: right;
+	width: 300px;
+}
+
+#FormBottom{
+background:url(Images/MainBottom.png) no-repeat bottom left;
+height: 24px;
+width: 795px;
+}
+
+.red{
+color: #182983;
+font-weight:bold;
+}
+
+.txtLogin
+{
+	padding-bottom:10px;
+}
+
+.btnLogin
+{
+	/*padding: 20px 60px 0px 20px;*/
+	float: right;
+}
+
+label.txtLogin
+{
+	font:1em  Helvetica, sans-serif;
+	font-weight:bold;
+	letter-spacing:0em;
+	color:#666666;
+	float:left;
+	padding-bottom:20px;
+	padding-left:90px;
+	width:90px;
+}
+
+
+
+.labelRight
+{
+	float: right;
+	padding-right:10px;
+}
+
+.ValidationSumary
+{
+	padding: 0px 10px 20px 90px;
+}
+
+.ValidationSumary ul
+{
+	padding-left:40px;
+}
+
+table.coverageLeft
+{
+	float: left;
+	width: 130px;
+	padding: 0px 0px 0px 40px;
+	margin:0px;
+}
+
+table.coverageRight
+{
+	float: right;
+	width:540px;
+	padding: 0px;
+	margin:0px 25px 0px 0px;
+}
+
+.tableTitle
+{
+	font-weight: bold;
+	font-size: 12px;
+}
+
+table#ReasonForWaive
+{
+	display:none;
+}
+
+.waiverNotice
+{
+	color: #666666;
+}
+
+.lblBold
+{
+	font-weight: bold;
+	color:#444444;
+	float:right;
+	padding-right: 4px;
+}
+.tdLight
+{
+	color: #b40000;
+}
+
+.clearFloat
+{
+	clear:both;
+}
+
+#Health1
+{
+	
+}
+
+#FormMid label
+{
+	padding-left: 2px;
+	font-family: Sans-Serif;
+	font-size: 12px;
+}
+
+td.underline
+{
+	border-bottom: solid 1px black;
+}
+
+
+
+
+

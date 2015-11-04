@@ -1,0 +1,20 @@
+C:\Users\mattlizzie\Desktop\ElectronicApp\ElectronicApp\bin\ElectronicApp.dll
+C:\Users\mattlizzie\Desktop\ElectronicApp\ElectronicApp\bin\ElectronicApp.pdb
+C:\Users\mattlizzie\Desktop\ElectronicApp\ElectronicApp\obj\Release\ResolveAssemblyReference.cache
+C:\Users\mattlizzie\Desktop\ElectronicApp\ElectronicApp\obj\Release\ElectronicApp.dll
+C:\Users\mattlizzie\Desktop\ElectronicApp\ElectronicApp\obj\Release\ElectronicApp.pdb
+C:\Users\mattlizzie\Desktop\ElectronicApp with Back Button\ElectronicApp\bin\ElectronicApp.dll
+C:\Users\mattlizzie\Desktop\ElectronicApp with Back Button\ElectronicApp\bin\ElectronicApp.pdb
+C:\Users\mattlizzie\Desktop\ElectronicApp with Back Button\ElectronicApp\obj\Release\ResolveAssemblyReference.cache
+C:\Users\mattlizzie\Desktop\ElectronicApp with Back Button\ElectronicApp\obj\Release\ElectronicApp.dll
+C:\Users\mattlizzie\Desktop\ElectronicApp with Back Button\ElectronicApp\obj\Release\ElectronicApp.pdb
+\\server\it\EAPP W ENROLLMENTS\ElectronicApp\ElectronicApp\bin\ElectronicApp.dll
+\\server\it\EAPP W ENROLLMENTS\ElectronicApp\ElectronicApp\bin\ElectronicApp.pdb
+\\server\it\EAPP W ENROLLMENTS\ElectronicApp\ElectronicApp\obj\Release\ResolveAssemblyReference.cache
+\\server\it\EAPP W ENROLLMENTS\ElectronicApp\ElectronicApp\obj\Release\ElectronicApp.dll
+\\server\it\EAPP W ENROLLMENTS\ElectronicApp\ElectronicApp\obj\Release\ElectronicApp.pdb
+C:\source code\EAPP W ENROLLMENTS\ElectronicApp\ElectronicApp\bin\ElectronicApp.dll.config
+C:\source code\EAPP W ENROLLMENTS\ElectronicApp\ElectronicApp\bin\ElectronicApp.dll
+C:\source code\EAPP W ENROLLMENTS\ElectronicApp\ElectronicApp\bin\ElectronicApp.pdb
+C:\source code\EAPP W ENROLLMENTS\ElectronicApp\ElectronicApp\obj\Release\ElectronicApp.dll
+C:\source code\EAPP W ENROLLMENTS\ElectronicApp\ElectronicApp\obj\Release\ElectronicApp.pdb

@@ -1,0 +1,502 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4BFE3367-4A5E-412F-831E-C1F423881756}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ElectronicApp</RootNamespace>
+    <AssemblyName>ElectronicApp</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=3.5.40412.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.0.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Desktop\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Themes\FormPage\FormPage.css" />
+    <Content Include="App_Themes\FormPage\Images\add.png" />
+    <Content Include="App_Themes\FormPage\Images\cross.png" />
+    <Content Include="App_Themes\FormPage\Images\MainBottom.png" />
+    <Content Include="App_Themes\FormPage\Images\MainMid.png" />
+    <Content Include="App_Themes\FormPage\Images\MainTop.png" />
+    <Content Include="App_Themes\FormPage\Images\minus.png" />
+    <Content Include="App_Themes\FormPage\Images\plus.png" />
+    <Content Include="App_Themes\LoginPage\Images\bottom.png" />
+    <Content Include="App_Themes\LoginPage\Images\button%282%29.gif" />
+    <Content Include="App_Themes\LoginPage\Images\button%283%29.gif" />
+    <Content Include="App_Themes\LoginPage\Images\button%284%29.gif" />
+    <Content Include="App_Themes\LoginPage\Images\button.gif" />
+    <Content Include="App_Themes\LoginPage\Images\i.gif" />
+    <Content Include="App_Themes\LoginPage\login.css" />
+    <Content Include="App_Themes\LoginPage\Images\smallMid.png" />
+    <Content Include="App_Themes\LoginPage\Images\Top.png" />
+    <Content Include="BrokerAdmin\Default.aspx" />
+    <Content Include="BrokerAdmin\EditInfo.aspx" />
+    <Content Include="BrokerAdmin\ViewClient.aspx" />
+    <Content Include="BrokerAdmin\Welcome.aspx" />
+    <Content Include="BrokerImages\default.jpeg" />
+    <Content Include="BrokerImages\rob-collins.png" />
+    <Content Include="Default.aspx" />
+    <Content Include="NebraskaApp\AuthorizationAndCert.aspx" />
+    <Content Include="NebraskaApp\BasicInformation.aspx" />
+    <Content Include="NebraskaApp\App\Controls\RowControl.ascx" />
+    <Content Include="NebraskaApp\App\Controls\DynamicTableControl.ascx" />
+    <Content Include="NebraskaApp\Images\ajax-loader%282%29.gif" />
+    <Content Include="NebraskaApp\preview2.aspx" />
+    <Content Include="NebraskaApp\Images\ajax-loader.gif" />
+    <Content Include="NebraskaApp\Processing.aspx" />
+    <Content Include="NebraskaApp\ReasonForDeclineDisability.aspx" />
+    <Content Include="NebraskaApp\ReasonForDeclineLife.aspx" />
+    <Content Include="NebraskaApp\ReasonForDeclineVision.aspx" />
+    <Content Include="NebraskaApp\ReasonForDeclineDental.aspx" />
+    <Content Include="NebraskaApp\CoverageSelection.aspx" />
+    <Content Include="NebraskaApp\DependentData.aspx" />
+    <Content Include="NebraskaApp\EmployeeData.aspx" />
+    <Content Include="NebraskaApp\HealthExplanations.aspx" />
+    <Content Include="NebraskaApp\HealthInformation.aspx" />
+    <Content Include="NebraskaApp\OtherCoverage.aspx" />
+    <Content Include="NebraskaApp\preview.aspx" />
+    <Content Include="NebraskaApp\ReasonForDeclineHealth.aspx" />
+    <Content Include="NebraskaApp\ReviewAndSign.aspx" />
+    <Content Include="NebraskaApp\SignApplication.aspx" />
+    <Content Include="NebraskaApp\thankyou.aspx" />
+    <Content Include="NebraskaApp\Validation\BasicInformation\ValidateBasicInformation.js" />
+    <Content Include="NebraskaApp\Validation\CoverageSelectionForm\CoverageSelection.js" />
+    <Content Include="NebraskaApp\Validation\CoverageSelectionForm\ValidateCoverage.js" />
+    <Content Include="NebraskaApp\Validation\DecliningForm\ValidateDecliningCoverage.js" />
+    <Content Include="NebraskaApp\Validation\DependentData\ValidateDependentData.js" />
+    <Content Include="NebraskaApp\Validation\EmployeeDataForm\ValidateForm1.js" />
+    <Content Include="NebraskaApp\Validation\HealthExplanations\validateHealthExplanations.js" />
+    <Content Include="NebraskaApp\Validation\HealthInformation\ValidateHealthInformation.js" />
+    <Content Include="NebraskaApp\Validation\OtherCoverage\ValidateOtherCoverage.js" />
+    <Content Include="NebraskaApp\Validation\validationHelpers.js" />
+    <Content Include="SignatureControl\ctlSignature.ascx" />
+    <Content Include="SignatureControl\Sign.aspx" />
+    <Content Include="SignatureControl\Signature.aspx" />
+    <Content Include="Web.config" />
+    <Content Include="Welcome.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BrokerAdmin\Class1.cs" />
+    <Compile Include="BrokerAdmin\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BrokerAdmin\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BrokerAdmin\EditClient.aspx.cs">
+      <DependentUpon>EditClient.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BrokerAdmin\EditClient.aspx.designer.cs">
+      <DependentUpon>EditClient.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BrokerAdmin\EditInfo.aspx.cs">
+      <DependentUpon>EditInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BrokerAdmin\EditInfo.aspx.designer.cs">
+      <DependentUpon>EditInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BrokerAdmin\GroupAdd.aspx.cs">
+      <DependentUpon>GroupAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BrokerAdmin\GroupAdd.aspx.designer.cs">
+      <DependentUpon>GroupAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BrokerAdmin\ViewClient.aspx.cs">
+      <DependentUpon>ViewClient.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BrokerAdmin\ViewClient.aspx.designer.cs">
+      <DependentUpon>ViewClient.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BrokerAdmin\Welcome.aspx.cs">
+      <DependentUpon>Welcome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BrokerAdmin\Welcome.aspx.designer.cs">
+      <DependentUpon>Welcome.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BrokerImages\Broker.ashx.cs">
+      <DependentUpon>Broker.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ElectronicAppDB.cs">
+      <DependentUpon>ElectronicAppDB.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="ElectronicAppDB.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ElectronicAppDB.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="ElectronicAppSecurityDB.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ElectronicAppSecurityDB.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="ElectronicAppStorageDB.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ElectronicAppStorageDB.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="NebraskaApp\AuthorizationAndCert.aspx.cs">
+      <DependentUpon>AuthorizationAndCert.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NebraskaApp\AuthorizationAndCert.aspx.designer.cs">
+      <DependentUpon>AuthorizationAndCert.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NebraskaApp\BasicInformation.aspx.cs">
+      <DependentUpon>BasicInformation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NebraskaApp\BasicInformation.aspx.designer.cs">
+      <DependentUpon>BasicInformation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NebraskaApp\App\Controls\RowControl.ascx.cs">
+      <DependentUpon>RowControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NebraskaApp\App\Controls\RowControl.ascx.designer.cs">
+      <DependentUpon>RowControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="NebraskaApp\App\Controls\DynamicTableControl.ascx.cs">
+      <DependentUpon>DynamicTableControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NebraskaApp\App\Controls\DynamicTableControl.ascx.designer.cs">
+      <DependentUpon>DynamicTableControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="NebraskaApp\preview2.aspx.cs">
+      <DependentUpon>preview2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NebraskaApp\preview2.aspx.designer.cs">
+      <DependentUpon>preview2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NebraskaApp\Processing.aspx.cs">
+      <DependentUpon>Processing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NebraskaApp\Processing.aspx.designer.cs">
+      <DependentUpon>Processing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NebraskaApp\ReasonForDeclineDisability.aspx.cs">
+      <DependentUpon>ReasonForDeclineDisability.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NebraskaApp\ReasonForDeclineDisability.aspx.designer.cs">
+      <DependentUpon>ReasonForDeclineDisability.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NebraskaApp\ReasonForDeclineLife.aspx.cs">
+      <DependentUpon>ReasonForDeclineLife.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NebraskaApp\ReasonForDeclineLife.aspx.designer.cs">
+      <DependentUpon>ReasonForDeclineLife.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NebraskaApp\ReasonForDeclineVision.aspx.cs">
+      <DependentUpon>ReasonForDeclineVision.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NebraskaApp\ReasonForDeclineVision.aspx.designer.cs">
+      <DependentUpon>ReasonForDeclineVision.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NebraskaApp\ReasonForDeclineDental.aspx.cs">
+      <DependentUpon>ReasonForDeclineDental.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NebraskaApp\ReasonForDeclineDental.aspx.designer.cs">
+      <DependentUpon>ReasonForDeclineDental.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NebraskaApp\CoverageSelection.aspx.cs">
+      <DependentUpon>CoverageSelection.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NebraskaApp\CoverageSelection.aspx.designer.cs">
+      <DependentUpon>CoverageSelection.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NebraskaApp\DependentData.aspx.cs">
+      <DependentUpon>DependentData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NebraskaApp\DependentData.aspx.designer.cs">
+      <DependentUpon>DependentData.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NebraskaApp\EmployeeData.aspx.cs">
+      <DependentUpon>EmployeeData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NebraskaApp\EmployeeData.aspx.designer.cs">
+      <DependentUpon>EmployeeData.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NebraskaApp\HealthExplanations.aspx.cs">
+      <DependentUpon>HealthExplanations.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NebraskaApp\HealthExplanations.aspx.designer.cs">
+      <DependentUpon>HealthExplanations.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NebraskaApp\HealthInformation.aspx.cs">
+      <DependentUpon>HealthInformation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NebraskaApp\HealthInformation.aspx.designer.cs">
+      <DependentUpon>HealthInformation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NebraskaApp\OtherCoverage.aspx.cs">
+      <DependentUpon>OtherCoverage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NebraskaApp\OtherCoverage.aspx.designer.cs">
+      <DependentUpon>OtherCoverage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NebraskaApp\preview.aspx.cs">
+      <DependentUpon>preview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NebraskaApp\preview.aspx.designer.cs">
+      <DependentUpon>preview.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NebraskaApp\ReasonForDeclineHealth.aspx.cs">
+      <DependentUpon>ReasonForDeclineHealth.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NebraskaApp\ReasonForDeclineHealth.aspx.designer.cs">
+      <DependentUpon>ReasonForDeclineHealth.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NebraskaApp\ReviewAndSign.aspx.cs">
+      <DependentUpon>ReviewAndSign.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NebraskaApp\ReviewAndSign.aspx.designer.cs">
+      <DependentUpon>ReviewAndSign.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NebraskaApp\SignApplication.aspx.cs">
+      <DependentUpon>SignApplication.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NebraskaApp\SignApplication.aspx.designer.cs">
+      <DependentUpon>SignApplication.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NebraskaApp\thankyou.aspx.cs">
+      <DependentUpon>thankyou.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NebraskaApp\thankyou.aspx.designer.cs">
+      <DependentUpon>thankyou.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NebraskaApp\Wizard.aspx.cs">
+      <DependentUpon>Wizard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NebraskaApp\Wizard.aspx.designer.cs">
+      <DependentUpon>Wizard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SessionDestroy.aspx.cs">
+      <DependentUpon>SessionDestroy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SessionDestroy.aspx.designer.cs">
+      <DependentUpon>SessionDestroy.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.cs" />
+    <Compile Include="SignatureControl\ctlSignature.ascx.cs">
+      <DependentUpon>ctlSignature.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SignatureControl\ctlSignature.ascx.designer.cs">
+      <DependentUpon>ctlSignature.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Supporting Classes\BasePage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Supporting Classes\ConcurrentCoverage.cs" />
+    <Compile Include="Supporting Classes\Coverage.cs" />
+    <Compile Include="Supporting Classes\coverageOffered.cs" />
+    <Compile Include="Supporting Classes\Dependent.cs" />
+    <Compile Include="Supporting Classes\Dependents.cs" />
+    <Compile Include="Supporting Classes\employeeData.cs" />
+    <Compile Include="Supporting Classes\CoverageItem.cs" />
+    <Compile Include="Supporting Classes\EmployerData.cs" />
+    <Compile Include="Supporting Classes\DeclineReason.cs" />
+    <Compile Include="Supporting Classes\Encrypt.cs" />
+    <Compile Include="Supporting Classes\FillPDF.cs" />
+    <Compile Include="Supporting Classes\HealthInformationAnswers.cs" />
+    <Compile Include="Supporting Classes\HealthStatement.cs" />
+    <Compile Include="Supporting Classes\HealthStatementHeaderRow.cs" />
+    <Compile Include="Supporting Classes\HealthStatementRow.cs" />
+    <Compile Include="Supporting Classes\HealthStatements.cs" />
+    <Compile Include="Supporting Classes\LifeBeneficiaries.cs" />
+    <Compile Include="Supporting Classes\MedicalQuestions.cs" />
+    <Compile Include="Supporting Classes\MedicareCoverage.cs" />
+    <Compile Include="Supporting Classes\PreviousCoverage.cs" />
+    <Compile Include="Supporting Classes\SignAndDatePDF.cs" />
+    <Compile Include="Welcome.aspx.cs">
+      <DependentUpon>Welcome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Welcome.aspx.designer.cs">
+      <DependentUpon>Welcome.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="NebraskaApp\App\blankapp2.pdf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ElectronicAppSecurityDB.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>ElectronicAppSecurityDB.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ElectronicAppSecurityDB.dbml.layout">
+      <DependentUpon>ElectronicAppSecurityDB.dbml</DependentUpon>
+    </None>
+    <None Include="ElectronicAppStorageDB.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>ElectronicAppStorageDB.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ElectronicAppDB.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>ElectronicAppDB.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ElectronicAppStorageDB.dbml.layout">
+      <DependentUpon>ElectronicAppStorageDB.dbml</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BrokerAdmin\EditClient.aspx" />
+    <Content Include="BrokerAdmin\GroupAdd.aspx" />
+    <Content Include="BrokerImages\Broker.ashx" />
+    <Content Include="NebraskaApp\Validation\HealthExplanations\validateExplanationsGrid.js" />
+    <Content Include="NebraskaApp\Wizard.aspx" />
+    <Content Include="SessionDestroy.aspx" />
+    <None Include="ElectronicAppDB.dbml.layout">
+      <DependentUpon>ElectronicAppDB.dbml</DependentUpon>
+    </None>
+    <None Include="NebraskaApp\App\AddMedAn1s.pdf" />
+    <None Include="NebraskaApp\App\AddMedAns.pdf" />
+    <None Include="NebraskaApp\App\blankapp.pdf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="NebraskaApp\pdfs\" />
+    <Folder Include="Signatures\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>4242</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
