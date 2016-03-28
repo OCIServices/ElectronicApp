@@ -19,40 +19,33 @@ namespace ElectronicApp.BrokerAdmin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (!base.IsPostBack)
             {
-                Guid myClientID = new Guid((String)(Session["clid"]));
-
-                uspGetClientByIDResult myClient = eappdb.uspGetClientByID(myClientID).Single<uspGetClientByIDResult>();
-                uspGetClientContactResult myClientContact = eappdb.uspGetClientContact(myClientID).Single<uspGetClientContactResult>();
-
-                BrokerFirstName.Text = myClient.EmployerName;
-                TaxID.Text = myClient.TaxID;
-                BrokerPhone.Text = myClientContact.Phone;
-                BrokerFax.Text = myClientContact.Fax;
-                BrokerAddress.Text = myClientContact.Address;
-                BrokerCity.Text = myClientContact.City;
-                BrokerState.Text = myClientContact.state;
-                BrokerZip.Text = myClientContact.zip;
+                Guid guid = new Guid((string)this.Session["clid"]);
+                uspGetClientByIDResult result = this.eappdb.uspGetClientByID(new Guid?(guid)).Single<uspGetClientByIDResult>();
+                uspGetClientContactResult result2 = this.eappdb.uspGetClientContact(new Guid?(guid)).Single<uspGetClientContactResult>();
+                this.BrokerFirstName.Text = result.EmployerName;
+                this.TaxID.Text = result.TaxID;
+                this.BrokerPhone.Text = result2.Phone;
+                this.BrokerFax.Text = result2.Fax;
+                this.BrokerAddress.Text = result2.Address;
+                this.BrokerCity.Text = result2.City;
+                this.BrokerState.Text = result2.state;
+                this.BrokerZip.Text = result2.zip;
             }
         }
 
         protected void Button2_Click(object sender, EventArgs e)
         {
             //Cancel Button Clicked
-            Response.Redirect("~/BrokerAdmin/ViewClient.aspx", true);
+            base.Response.Redirect("~/BrokerAdmin/ViewClient.aspx", true);
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Guid clientID = new Guid((String)(Session["clid"]));
-
-            //Update Button Clicked
-            //Save Information
-            eappdb.uspAlterClientInfo(clientID, BrokerFirstName.Text, TaxID.Text, BrokerPhone.Text, BrokerFax.Text, BrokerAddress.Text, BrokerCity.Text, BrokerState.Text, BrokerZip.Text);
-
-            //Redirect to client page.
-            Response.Redirect("~/BrokerAdmin/ViewClient.aspx", true);
+            Guid guid = new Guid((string)this.Session["clid"]);
+            this.eappdb.uspAlterClientInfo(new Guid?(guid), this.BrokerFirstName.Text, this.TaxID.Text, this.BrokerPhone.Text, this.BrokerFax.Text, this.BrokerAddress.Text, this.BrokerCity.Text, this.BrokerState.Text, this.BrokerZip.Text);
+            base.Response.Redirect("~/BrokerAdmin/ViewClient.aspx", true);
         }
     }
 }

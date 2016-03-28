@@ -101,6 +101,11 @@
     <Content Include="BrokerImages\default.jpeg" />
     <Content Include="BrokerImages\rob-collins.png" />
     <Content Include="Default.aspx" />
+    <Content Include="ElectronicAppSecurityDB.dbml">
+      <SubType>Designer</SubType>
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>ElectronicAppSecurityDB.designer.cs</LastGenOutput>
+    </Content>
     <Content Include="NebraskaApp\AuthorizationAndCert.aspx" />
     <Content Include="NebraskaApp\BasicInformation.aspx" />
     <Content Include="NebraskaApp\App\Controls\RowControl.ascx" />
@@ -194,18 +199,15 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ElectronicAppDB.cs">
-      <DependentUpon>ElectronicAppDB.dbml</DependentUpon>
-    </Compile>
     <Compile Include="ElectronicAppDB.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ElectronicAppDB.dbml</DependentUpon>
     </Compile>
     <Compile Include="ElectronicAppSecurityDB.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>ElectronicAppSecurityDB.dbml</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="ElectronicAppStorageDB.designer.cs">
       <AutoGen>True</AutoGen>
@@ -415,37 +417,23 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ElectronicAppDB.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>ElectronicAppDB.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="ElectronicAppSecurityDB.dbml.layout">
+      <DependentUpon>ElectronicAppSecurityDB.dbml</DependentUpon>
+    </None>
+    <Content Include="ElectronicAppStorageDB.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>ElectronicAppStorageDB.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="NebraskaApp\App\blankapp2.pdf" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ElectronicAppSecurityDB.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>ElectronicAppSecurityDB.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ElectronicAppSecurityDB.dbml.layout">
-      <DependentUpon>ElectronicAppSecurityDB.dbml</DependentUpon>
-    </None>
-    <None Include="ElectronicAppStorageDB.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>ElectronicAppStorageDB.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ElectronicAppDB.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>ElectronicAppDB.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="ElectronicAppStorageDB.dbml.layout">
-      <DependentUpon>ElectronicAppStorageDB.dbml</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="BrokerAdmin\EditClient.aspx" />
@@ -454,9 +442,6 @@
     <Content Include="NebraskaApp\Validation\HealthExplanations\validateExplanationsGrid.js" />
     <Content Include="NebraskaApp\Wizard.aspx" />
     <Content Include="SessionDestroy.aspx" />
-    <None Include="ElectronicAppDB.dbml.layout">
-      <DependentUpon>ElectronicAppDB.dbml</DependentUpon>
-    </None>
     <None Include="NebraskaApp\App\AddMedAn1s.pdf" />
     <None Include="NebraskaApp\App\AddMedAns.pdf" />
     <None Include="NebraskaApp\App\blankapp.pdf" />
@@ -465,6 +450,16 @@
     <Folder Include="App_Data\" />
     <Folder Include="NebraskaApp\pdfs\" />
     <Folder Include="Signatures\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ElectronicAppDB.dbml.layout">
+      <DependentUpon>ElectronicAppDB.dbml</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ElectronicAppStorageDB.dbml.layout">
+      <DependentUpon>ElectronicAppStorageDB.dbml</DependentUpon>
+    </None>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

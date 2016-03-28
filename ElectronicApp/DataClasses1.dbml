@@ -1,5 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ElectronicApp_Security" Class="ElectronicAppSecurityDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ElectronicApp_Security" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=SERVER2\MSSQLSERVER2005,4889;Initial Catalog=ElectronicApp_Security;User ID=WebUser" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="ElectronicApp_SecurityConnectionString" Provider="System.Data.SqlClient" />
+  <Function Name="dbo.uspAlterWebUser" Method="uspAlterWebUser">
+    <Parameter Name="UserID" Parameter="userID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Username" Parameter="username" Type="System.String" DbType="Text" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="Text" />
+    <Return Type="System.Int32" />
+  </Function>
   <Function Name="dbo.uspAlterBrokerUser" Method="uspAlterBrokerUser">
     <Parameter Name="UserID" Parameter="userID" Type="System.Guid" DbType="UniqueIdentifier" />
     <Parameter Name="Username" Parameter="username" Type="System.String" DbType="VarChar(50)" />
@@ -12,12 +18,6 @@
     <ElementType Name="uspLoginWebuserResult">
       <Column Name="AssociatedWith" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
     </ElementType>
-  </Function>
-  <Function Name="dbo.uspAlterWebUser" Method="uspAlterWebUser">
-    <Parameter Name="UserID" Parameter="userID" Type="System.Guid" DbType="UniqueIdentifier" />
-    <Parameter Name="Username" Parameter="username" Type="System.String" DbType="Text" />
-    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="Text" />
-    <Return Type="System.Int32" />
   </Function>
   <Function Name="dbo.uspCheckUsername" Method="uspCheckUsername">
     <Parameter Name="User" Parameter="user" Type="System.String" DbType="VarChar(50)" />

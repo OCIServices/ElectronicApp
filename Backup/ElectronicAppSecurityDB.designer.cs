@@ -23,7 +23,7 @@ namespace ElectronicApp
 	
 	
 	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="ElectronicApp_Security")]
-	public partial class ElectronicAppSecurityDBDataContext : System.Data.Linq.DataContext
+	public partial class DataClasses1DataContext : System.Data.Linq.DataContext
 	{
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
@@ -32,34 +32,41 @@ namespace ElectronicApp
     partial void OnCreated();
     #endregion
 		
-		public ElectronicAppSecurityDBDataContext() : 
+		public DataClasses1DataContext() : 
 				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["ElectronicApp_SecurityConnectionString"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public ElectronicAppSecurityDBDataContext(string connection) : 
+		public DataClasses1DataContext(string connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public ElectronicAppSecurityDBDataContext(System.Data.IDbConnection connection) : 
+		public DataClasses1DataContext(System.Data.IDbConnection connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public ElectronicAppSecurityDBDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public DataClasses1DataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public ElectronicAppSecurityDBDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public DataClasses1DataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.uspAlterWebUser")]
+		public int uspAlterWebUser([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserID", DbType="UniqueIdentifier")] System.Nullable<System.Guid> userID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Username", DbType="Text")] string username, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Password", DbType="Text")] string password)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userID, username, password);
+			return ((int)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.uspAlterBrokerUser")]
@@ -74,13 +81,6 @@ namespace ElectronicApp
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userName, password);
 			return ((ISingleResult<uspLoginWebuserResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.uspAlterWebUser")]
-		public int uspAlterWebUser([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserID", DbType="UniqueIdentifier")] System.Nullable<System.Guid> userID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Username", DbType="Text")] string username, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Password", DbType="Text")] string password)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userID, username, password);
-			return ((int)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.uspCheckUsername")]

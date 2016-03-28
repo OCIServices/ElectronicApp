@@ -152,9 +152,10 @@
                                     </td>
                                 </tr>
                                 </table>
-                                <p><asp:Label ID="errorEligible" runat="server" 
-                                        Text="please enter number of eligible employees" ForeColor="#CC0000" 
-                                        Visible="False"/></asp:Label></p>
+                                <p>
+                                    <asp:Label ID="errorEligible" runat="server" Text="please enter number of eligible employees" ForeColor="#CC0000" 
+                                        Visible="false"></asp:Label>
+                                </p>
                                 <table style="width: 1001px; margin-left: 31px">
                                 <tr>
                                     <td class="style10">
