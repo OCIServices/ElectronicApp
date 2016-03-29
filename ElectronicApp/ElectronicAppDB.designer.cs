@@ -11,196 +11,334 @@
 
 namespace ElectronicApp
 {
-    using System.Data.Linq;
-    using System.Data.Linq.Mapping;
-    using System.Data;
-    using System.Collections.Generic;
-    using System.Reflection;
-    using System.Linq;
-    using System.Linq.Expressions;
-    using System.ComponentModel;
-    using System;
-    using System.Configuration;
-
-    [Database(Name = "ElectronipApp")]
-    public class ElectronicAppDBDataContext : DataContext
-    {
-        private static MappingSource mappingSource = new AttributeMappingSource();
-
-        public ElectronicAppDBDataContext() : base(ConfigurationManager.ConnectionStrings["ElectronipAppConnectionString1"].ConnectionString, mappingSource)
-        {
-        }
-
-        public ElectronicAppDBDataContext(IDbConnection connection) : base(connection, mappingSource)
-        {
-        }
-
-        public ElectronicAppDBDataContext(string connection) : base(connection, mappingSource)
-        {
-        }
-
-        public ElectronicAppDBDataContext(IDbConnection connection, MappingSource mappingSource) : base(connection, mappingSource)
-        {
-        }
-
-        public ElectronicAppDBDataContext(string connection, MappingSource mappingSource) : base(connection, mappingSource)
-        {
-        }
-
-        [Function(Name = "dbo.uspAlterBrokerInfo")]
-        public int uspAlterBrokerInfo([Parameter(DbType = "UniqueIdentifier")] Guid? brokerid, [Parameter(DbType = "VarChar(50)")] string firstname, [Parameter(DbType = "VarChar(50)")] string lastname, [Parameter(DbType = "VarChar(100)")] string email, [Parameter(DbType = "VarChar(15)")] string phone, [Parameter(DbType = "VarChar(15)")] string faxnum, [Parameter(DbType = "VarChar(50)")] string address, [Parameter(DbType = "VarChar(50)")] string city, [Parameter(DbType = "VarChar(2)")] string state, [Parameter(DbType = "VarChar(5)")] string zip)
-        {
-            return (int)base.ExecuteMethodCall(this, (MethodInfo)MethodBase.GetCurrentMethod(), new object[] { brokerid, firstname, lastname, email, phone, faxnum, address, city, state, zip }).ReturnValue;
-        }
-
-        [Function(Name = "dbo.uspAlterClientInfo")]
-        public int uspAlterClientInfo([Parameter(Name = "ClientID", DbType = "UniqueIdentifier")] Guid? clientID, [Parameter(DbType = "Text")] string employer, [Parameter(DbType = "Text")] string taxid, [Parameter(DbType = "Text")] string phone, [Parameter(DbType = "Text")] string fax, [Parameter(DbType = "Text")] string address, [Parameter(DbType = "Text")] string city, [Parameter(DbType = "Text")] string state, [Parameter(DbType = "Text")] string zip)
-        {
-            return (int)base.ExecuteMethodCall(this, (MethodInfo)MethodBase.GetCurrentMethod(), new object[] { clientID, employer, taxid, phone, fax, address, city, state, zip }).ReturnValue;
-        }
-
-        [Function(Name = "dbo.uspDoesEnrolleeExist")]
-        public ISingleResult<uspDoesEnrolleeExistResult> uspDoesEnrolleeExist([Parameter(Name = "OwnerID", DbType = "UniqueIdentifier")] Guid? ownerID, [Parameter(Name = "FirstName", DbType = "VarChar(100)")] string firstName, [Parameter(Name = "LastName", DbType = "VarChar(100)")] string lastName, [Parameter(Name = "BirthDate", DbType = "VarChar(50)")] string birthDate)
-        {
-            return (ISingleResult<uspDoesEnrolleeExistResult>)base.ExecuteMethodCall(this, (MethodInfo)MethodBase.GetCurrentMethod(), new object[] { ownerID, firstName, lastName, birthDate }).ReturnValue;
-        }
-
-        [Function(Name = "dbo.uspGetBrokerByID")]
-        public ISingleResult<uspGetBrokerByIDResult> uspGetBrokerByID([Parameter(Name = "BrokerID", DbType = "UniqueIdentifier")] Guid? brokerID)
-        {
-            return (ISingleResult<uspGetBrokerByIDResult>)base.ExecuteMethodCall(this, (MethodInfo)MethodBase.GetCurrentMethod(), new object[] { brokerID }).ReturnValue;
-        }
-
-        [Function(Name = "dbo.uspGetBrokerContact")]
-        public ISingleResult<uspGetBrokerContactResult> uspGetBrokerContact([Parameter(Name = "OwnerID", DbType = "UniqueIdentifier")] Guid? ownerID)
-        {
-            return (ISingleResult<uspGetBrokerContactResult>)base.ExecuteMethodCall(this, (MethodInfo)MethodBase.GetCurrentMethod(), new object[] { ownerID }).ReturnValue;
-        }
-
-        [Function(Name = "dbo.uspGetCarrierOptions")]
-        public ISingleResult<uspGetCarrierOptionsResult> uspGetCarrierOptions()
-        {
-            return (ISingleResult<uspGetCarrierOptionsResult>)base.ExecuteMethodCall(this, (MethodInfo)MethodBase.GetCurrentMethod(), new object[0]).ReturnValue;
-        }
-
-        [Function(Name = "dbo.uspGetClientByID")]
-        public ISingleResult<uspGetClientByIDResult> uspGetClientByID([Parameter(DbType = "UniqueIdentifier")] Guid? clientID)
-        {
-            return (ISingleResult<uspGetClientByIDResult>)base.ExecuteMethodCall(this, (MethodInfo)MethodBase.GetCurrentMethod(), new object[] { clientID }).ReturnValue;
-        }
-
-        [Function(Name = "dbo.uspGetClientCarriers")]
-        public ISingleResult<uspGetClientCarriersResult> uspGetClientCarriers([Parameter(Name = "ClientID", DbType = "UniqueIdentifier")] Guid? clientID)
-        {
-            return (ISingleResult<uspGetClientCarriersResult>)base.ExecuteMethodCall(this, (MethodInfo)MethodBase.GetCurrentMethod(), new object[] { clientID }).ReturnValue;
-        }
-
-        [Function(Name = "dbo.uspGetClientContact")]
-        public ISingleResult<uspGetClientContactResult> uspGetClientContact([Parameter(Name = "OwnerID", DbType = "UniqueIdentifier")] Guid? ownerID)
-        {
-            return (ISingleResult<uspGetClientContactResult>)base.ExecuteMethodCall(this, (MethodInfo)MethodBase.GetCurrentMethod(), new object[] { ownerID }).ReturnValue;
-        }
-
-        [Function(Name = "dbo.uspGetClientCoverageOptions")]
-        public ISingleResult<uspGetClientCoverageOptionsResult> uspGetClientCoverageOptions([Parameter(Name = "OwnerID", DbType = "UniqueIdentifier")] Guid? ownerID)
-        {
-            return (ISingleResult<uspGetClientCoverageOptionsResult>)base.ExecuteMethodCall(this, (MethodInfo)MethodBase.GetCurrentMethod(), new object[] { ownerID }).ReturnValue;
-        }
-
-        [Function(Name = "dbo.uspGetClientListByOwnerID")]
-        public ISingleResult<uspGetClientListByOwnerIDResult> uspGetClientListByOwnerID([Parameter(Name = "OwnerID", DbType = "UniqueIdentifier")] Guid? ownerID)
-        {
-            return (ISingleResult<uspGetClientListByOwnerIDResult>)base.ExecuteMethodCall(this, (MethodInfo)MethodBase.GetCurrentMethod(), new object[] { ownerID }).ReturnValue;
-        }
-
-        [Function(Name = "dbo.uspGetClientPlanOptions")]
-        public ISingleResult<uspGetClientPlanOptionsResult> uspGetClientPlanOptions([Parameter(Name = "OwnerID", DbType = "UniqueIdentifier")] Guid? ownerID)
-        {
-            return (ISingleResult<uspGetClientPlanOptionsResult>)base.ExecuteMethodCall(this, (MethodInfo)MethodBase.GetCurrentMethod(), new object[] { ownerID }).ReturnValue;
-        }
-
-        [Function(Name = "dbo.uspGetEnrolleeByID")]
-        public ISingleResult<uspGetEnrolleeByIDResult> uspGetEnrolleeByID([Parameter(Name = "EnrolleeID", DbType = "UniqueIdentifier")] Guid? enrolleeID)
-        {
-            return (ISingleResult<uspGetEnrolleeByIDResult>)base.ExecuteMethodCall(this, (MethodInfo)MethodBase.GetCurrentMethod(), new object[] { enrolleeID }).ReturnValue;
-        }
-
-        [Function(Name = "dbo.uspGetSubmissionsByClientID")]
-        public ISingleResult<uspGetSubmissionsByClientIDResult> uspGetSubmissionsByClientID([Parameter(DbType = "UniqueIdentifier")] Guid? ownerid)
-        {
-            return (ISingleResult<uspGetSubmissionsByClientIDResult>)base.ExecuteMethodCall(this, (MethodInfo)MethodBase.GetCurrentMethod(), new object[] { ownerid }).ReturnValue;
-        }
-
-        [Function(Name = "dbo.uspGetSubmissionsByClientIDBrokerView")]
-        public ISingleResult<uspGetSubmissionsByClientIDBrokerViewResult> uspGetSubmissionsByClientIDBrokerView([Parameter(DbType = "UniqueIdentifier")] Guid? ownerid)
-        {
-            return (ISingleResult<uspGetSubmissionsByClientIDBrokerViewResult>)base.ExecuteMethodCall(this, (MethodInfo)MethodBase.GetCurrentMethod(), new object[] { ownerid }).ReturnValue;
-        }
-
-        [Function(Name = "dbo.uspInsertClient")]
-        public int uspInsertClient([Parameter(Name = "ClientID", DbType = "UniqueIdentifier")] Guid? clientID, [Parameter(Name = "OwnerID", DbType = "UniqueIdentifier")] Guid? ownerID, [Parameter(Name = "EmployerName", DbType = "VarChar(100)")] string employerName, [Parameter(Name = "TaxID", DbType = "VarChar(100)")] string taxID, [Parameter(Name = "EligableEmployees", DbType = "Int")] int? eligableEmployees)
-        {
-            return (int)base.ExecuteMethodCall(this, (MethodInfo)MethodBase.GetCurrentMethod(), new object[] { clientID, ownerID, employerName, taxID, eligableEmployees }).ReturnValue;
-        }
-
-        [Function(Name = "dbo.uspInsertClientCarrier")]
-        public int uspInsertClientCarrier([Parameter(Name = "CID", DbType = "UniqueIdentifier")] Guid? cID, [Parameter(Name = "Client", DbType = "UniqueIdentifier")] Guid? client, [Parameter(Name = "Carrier", DbType = "VarChar(100)")] string carrier)
-        {
-            return (int)base.ExecuteMethodCall(this, (MethodInfo)MethodBase.GetCurrentMethod(), new object[] { cID, client, carrier }).ReturnValue;
-        }
-
-        [Function(Name = "dbo.uspInsertClientInfo")]
-        public int uspInsertClientInfo([Parameter(DbType = "UniqueIdentifier")] Guid? contactID, [Parameter(DbType = "UniqueIdentifier")] Guid? ownerID, [Parameter(DbType = "Text")] string phone, [Parameter(DbType = "Text")] string fax, [Parameter(DbType = "Text")] string address, [Parameter(DbType = "Text")] string city, [Parameter(DbType = "Text")] string state, [Parameter(DbType = "Text")] string zip)
-        {
-            return (int)base.ExecuteMethodCall(this, (MethodInfo)MethodBase.GetCurrentMethod(), new object[] { contactID, ownerID, phone, fax, address, city, state, zip }).ReturnValue;
-        }
-
-        [Function(Name = "dbo.uspInsertClientOptions")]
-        public int uspInsertClientOptions([Parameter(Name = "OptionsID", DbType = "UniqueIdentifier")] Guid? optionsID, [Parameter(Name = "OwnerID", DbType = "UniqueIdentifier")] Guid? ownerID, [Parameter(DbType = "Bit")] bool? med, [Parameter(DbType = "Bit")] bool? den, [Parameter(DbType = "Bit")] bool? lif, [Parameter(DbType = "Bit")] bool? vis, [Parameter(DbType = "Bit")] bool? dis)
-        {
-            return (int)base.ExecuteMethodCall(this, (MethodInfo)MethodBase.GetCurrentMethod(), new object[] { optionsID, ownerID, med, den, lif, vis, dis }).ReturnValue;
-        }
-
-        [Function(Name = "dbo.uspInsertEnrollee")]
-        public int uspInsertEnrollee([Parameter(Name = "EnrolleeID", DbType = "UniqueIdentifier")] Guid? enrolleeID, [Parameter(Name = "OwnerID", DbType = "UniqueIdentifier")] Guid? ownerID, [Parameter(Name = "FirstName", DbType = "VarChar(100)")] string firstName, [Parameter(Name = "LastName", DbType = "VarChar(100)")] string lastName, [Parameter(Name = "BirthDate", DbType = "VarChar(50)")] string birthDate, [Parameter(DbType = "Bit")] bool? isComplete, [Parameter(Name = "AddedBy", DbType = "VarChar(100)")] string addedBy)
-        {
-            return (int)base.ExecuteMethodCall(this, (MethodInfo)MethodBase.GetCurrentMethod(), new object[] { enrolleeID, ownerID, firstName, lastName, birthDate, isComplete, addedBy }).ReturnValue;
-        }
-
-        [Function(Name = "dbo.uspInsertSubmission")]
-        public int uspInsertSubmission([Parameter(Name = "SubmissionID", DbType = "UniqueIdentifier")] Guid? submissionID, [Parameter(Name = "OwnerID", DbType = "UniqueIdentifier")] Guid? ownerID, [Parameter(Name = "FileName", DbType = "VarChar(100)")] string fileName, [Parameter(Name = "Extension", DbType = "VarChar(10)")] string extension, [Parameter(Name = "AddedBy", DbType = "VarChar(100)")] string addedBy)
-        {
-            return (int)base.ExecuteMethodCall(this, (MethodInfo)MethodBase.GetCurrentMethod(), new object[] { submissionID, ownerID, fileName, extension, addedBy }).ReturnValue;
-        }
-
-        [Function(Name = "dbo.uspUpdateEnrolleeCompletionStatus")]
-        public int uspUpdateEnrolleeCompletionStatus([Parameter(Name = "EnrolleeID", DbType = "UniqueIdentifier")] Guid? enrolleeID, [Parameter(DbType = "Bit")] bool? status)
-        {
-            return (int)base.ExecuteMethodCall(this, (MethodInfo)MethodBase.GetCurrentMethod(), new object[] { enrolleeID, status }).ReturnValue;
-        }
-    }
-
-    public partial class uspDoesEnrolleeExistResult
+	using System.Data.Linq;
+	using System.Data.Linq.Mapping;
+	using System.Data;
+	using System.Collections.Generic;
+	using System.Reflection;
+	using System.Linq;
+	using System.Linq.Expressions;
+	using System.ComponentModel;
+	using System;
+	
+	
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="ElectronipApp")]
+	public partial class ElectronicAppDBDataContext : System.Data.Linq.DataContext
 	{
 		
-		private System.Guid _EnrolleeID;
+		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
 		
-		public uspDoesEnrolleeExistResult()
+    #region Extensibility Method Definitions
+    partial void OnCreated();
+    #endregion
+		
+		public ElectronicAppDBDataContext() : 
+				base(System.Configuration.ConfigurationManager.ConnectionStrings["ElectronipAppConnectionString1"].ConnectionString, mappingSource)
+		{
+			OnCreated();
+		}
+		
+		public ElectronicAppDBDataContext(string connection) : 
+				base(connection, mappingSource)
+		{
+			OnCreated();
+		}
+		
+		public ElectronicAppDBDataContext(System.Data.IDbConnection connection) : 
+				base(connection, mappingSource)
+		{
+			OnCreated();
+		}
+		
+		public ElectronicAppDBDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+				base(connection, mappingSource)
+		{
+			OnCreated();
+		}
+		
+		public ElectronicAppDBDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+				base(connection, mappingSource)
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.uspGetClientCoverageOptions")]
+		public ISingleResult<uspGetClientCoverageOptionsResult> uspGetClientCoverageOptions([global::System.Data.Linq.Mapping.ParameterAttribute(Name="OwnerID", DbType="UniqueIdentifier")] System.Nullable<System.Guid> ownerID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), ownerID);
+			return ((ISingleResult<uspGetClientCoverageOptionsResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.uspGetBrokerByID")]
+		public ISingleResult<uspGetBrokerByIDResult> uspGetBrokerByID([global::System.Data.Linq.Mapping.ParameterAttribute(Name="BrokerID", DbType="UniqueIdentifier")] System.Nullable<System.Guid> brokerID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), brokerID);
+			return ((ISingleResult<uspGetBrokerByIDResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.uspGetClientPlanOptions")]
+		public ISingleResult<uspGetClientPlanOptionsResult> uspGetClientPlanOptions([global::System.Data.Linq.Mapping.ParameterAttribute(Name="OwnerID", DbType="UniqueIdentifier")] System.Nullable<System.Guid> ownerID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), ownerID);
+			return ((ISingleResult<uspGetClientPlanOptionsResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.uspGetBrokerContact")]
+		public ISingleResult<uspGetBrokerContactResult> uspGetBrokerContact([global::System.Data.Linq.Mapping.ParameterAttribute(Name="OwnerID", DbType="UniqueIdentifier")] System.Nullable<System.Guid> ownerID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), ownerID);
+			return ((ISingleResult<uspGetBrokerContactResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.uspUpdateEnrolleeCompletionStatus")]
+		public int uspUpdateEnrolleeCompletionStatus([global::System.Data.Linq.Mapping.ParameterAttribute(Name="EnrolleeID", DbType="UniqueIdentifier")] System.Nullable<System.Guid> enrolleeID, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Bit")] System.Nullable<bool> status)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), enrolleeID, status);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.uspDoesEnrolleeExist")]
+		public ISingleResult<uspDoesEnrolleeExistResult> uspDoesEnrolleeExist([global::System.Data.Linq.Mapping.ParameterAttribute(Name="OwnerID", DbType="UniqueIdentifier")] System.Nullable<System.Guid> ownerID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FirstName", DbType="VarChar(100)")] string firstName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="LastName", DbType="VarChar(100)")] string lastName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="BirthDate", DbType="VarChar(50)")] string birthDate)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), ownerID, firstName, lastName, birthDate);
+			return ((ISingleResult<uspDoesEnrolleeExistResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.uspInsertEnrollee")]
+		public int uspInsertEnrollee([global::System.Data.Linq.Mapping.ParameterAttribute(Name="EnrolleeID", DbType="UniqueIdentifier")] System.Nullable<System.Guid> enrolleeID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="OwnerID", DbType="UniqueIdentifier")] System.Nullable<System.Guid> ownerID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FirstName", DbType="VarChar(100)")] string firstName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="LastName", DbType="VarChar(100)")] string lastName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="BirthDate", DbType="VarChar(50)")] string birthDate, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Bit")] System.Nullable<bool> isComplete, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="AddedBy", DbType="VarChar(100)")] string addedBy)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), enrolleeID, ownerID, firstName, lastName, birthDate, isComplete, addedBy);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.uspGetClientContact")]
+		public ISingleResult<uspGetClientContactResult> uspGetClientContact([global::System.Data.Linq.Mapping.ParameterAttribute(Name="OwnerID", DbType="UniqueIdentifier")] System.Nullable<System.Guid> ownerID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), ownerID);
+			return ((ISingleResult<uspGetClientContactResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.uspInsertSubmission")]
+		public int uspInsertSubmission([global::System.Data.Linq.Mapping.ParameterAttribute(Name="SubmissionID", DbType="UniqueIdentifier")] System.Nullable<System.Guid> submissionID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="OwnerID", DbType="UniqueIdentifier")] System.Nullable<System.Guid> ownerID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FileName", DbType="VarChar(100)")] string fileName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Extension", DbType="VarChar(10)")] string extension, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="AddedBy", DbType="VarChar(100)")] string addedBy)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), submissionID, ownerID, fileName, extension, addedBy);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.uspGetClientCarriers")]
+		public ISingleResult<uspGetClientCarriersResult> uspGetClientCarriers([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ClientID", DbType="UniqueIdentifier")] System.Nullable<System.Guid> clientID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), clientID);
+			return ((ISingleResult<uspGetClientCarriersResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.uspGetClientListByOwnerID")]
+		public ISingleResult<uspGetClientListByOwnerIDResult> uspGetClientListByOwnerID([global::System.Data.Linq.Mapping.ParameterAttribute(Name="OwnerID", DbType="UniqueIdentifier")] System.Nullable<System.Guid> ownerID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), ownerID);
+			return ((ISingleResult<uspGetClientListByOwnerIDResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.uspGetSubmissionsByClientID")]
+		public ISingleResult<uspGetSubmissionsByClientIDResult> uspGetSubmissionsByClientID([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="UniqueIdentifier")] System.Nullable<System.Guid> ownerid)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), ownerid);
+			return ((ISingleResult<uspGetSubmissionsByClientIDResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.uspAlterBrokerInfo")]
+		public int uspAlterBrokerInfo([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="UniqueIdentifier")] System.Nullable<System.Guid> brokerid, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string firstname, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string lastname, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(100)")] string email, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(15)")] string phone, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(15)")] string faxnum, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string address, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string city, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(2)")] string state, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(5)")] string zip)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), brokerid, firstname, lastname, email, phone, faxnum, address, city, state, zip);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.uspGetEnrolleeByID")]
+		public ISingleResult<uspGetEnrolleeByIDResult> uspGetEnrolleeByID([global::System.Data.Linq.Mapping.ParameterAttribute(Name="EnrolleeID", DbType="UniqueIdentifier")] System.Nullable<System.Guid> enrolleeID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), enrolleeID);
+			return ((ISingleResult<uspGetEnrolleeByIDResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.uspInsertClient")]
+		public int uspInsertClient([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ClientID", DbType="UniqueIdentifier")] System.Nullable<System.Guid> clientID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="OwnerID", DbType="UniqueIdentifier")] System.Nullable<System.Guid> ownerID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="EmployerName", DbType="VarChar(100)")] string employerName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="TaxID", DbType="VarChar(100)")] string taxID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), clientID, ownerID, employerName, taxID);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.uspInsertClientOptions")]
+		public int uspInsertClientOptions([global::System.Data.Linq.Mapping.ParameterAttribute(Name="OptionsID", DbType="UniqueIdentifier")] System.Nullable<System.Guid> optionsID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="OwnerID", DbType="UniqueIdentifier")] System.Nullable<System.Guid> ownerID, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Bit")] System.Nullable<bool> med, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Bit")] System.Nullable<bool> den, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Bit")] System.Nullable<bool> lif, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Bit")] System.Nullable<bool> vis, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Bit")] System.Nullable<bool> dis)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), optionsID, ownerID, med, den, lif, vis, dis);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.uspInsertClientCarrier")]
+		public int uspInsertClientCarrier([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CID", DbType="UniqueIdentifier")] System.Nullable<System.Guid> cID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Client", DbType="UniqueIdentifier")] System.Nullable<System.Guid> client, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Carrier", DbType="VarChar(100)")] string carrier)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), cID, client, carrier);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.uspInsertClientInfo")]
+		public int uspInsertClientInfo([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="UniqueIdentifier")] System.Nullable<System.Guid> contactID, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="UniqueIdentifier")] System.Nullable<System.Guid> ownerID, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Text")] string phone, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Text")] string fax, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Text")] string address, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Text")] string city, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Text")] string state, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Text")] string zip)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), contactID, ownerID, phone, fax, address, city, state, zip);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.uspAlterClientInfo")]
+		public int uspAlterClientInfo([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ClientID", DbType="UniqueIdentifier")] System.Nullable<System.Guid> clientID, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Text")] string employer, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Text")] string taxid, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Text")] string phone, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Text")] string fax, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Text")] string address, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Text")] string city, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Text")] string state, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Text")] string zip)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), clientID, employer, taxid, phone, fax, address, city, state, zip);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.uspGetClientByID")]
+		public ISingleResult<uspGetClientByIDResult> uspGetClientByID([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="UniqueIdentifier")] System.Nullable<System.Guid> clientID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), clientID);
+			return ((ISingleResult<uspGetClientByIDResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.uspGetCarrierOptions")]
+		public ISingleResult<uspGetCarrierOptionsResult> uspGetCarrierOptions()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<uspGetCarrierOptionsResult>)(result.ReturnValue));
+		}
+	}
+	
+	public partial class uspGetClientCoverageOptionsResult
+	{
+		
+		private System.Guid _OptionsID;
+		
+		private System.Guid _OwnerID;
+		
+		private bool _Medical;
+		
+		private bool _Dental;
+		
+		private bool _Life;
+		
+		private bool _Vision;
+		
+		private bool _Disability;
+		
+		public uspGetClientCoverageOptionsResult()
 		{
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EnrolleeID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid EnrolleeID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OptionsID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid OptionsID
 		{
 			get
 			{
-				return this._EnrolleeID;
+				return this._OptionsID;
 			}
 			set
 			{
-				if ((this._EnrolleeID != value))
+				if ((this._OptionsID != value))
 				{
-					this._EnrolleeID = value;
+					this._OptionsID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OwnerID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid OwnerID
+		{
+			get
+			{
+				return this._OwnerID;
+			}
+			set
+			{
+				if ((this._OwnerID != value))
+				{
+					this._OwnerID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Medical", DbType="Bit NOT NULL")]
+		public bool Medical
+		{
+			get
+			{
+				return this._Medical;
+			}
+			set
+			{
+				if ((this._Medical != value))
+				{
+					this._Medical = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Dental", DbType="Bit NOT NULL")]
+		public bool Dental
+		{
+			get
+			{
+				return this._Dental;
+			}
+			set
+			{
+				if ((this._Dental != value))
+				{
+					this._Dental = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Life", DbType="Bit NOT NULL")]
+		public bool Life
+		{
+			get
+			{
+				return this._Life;
+			}
+			set
+			{
+				if ((this._Life != value))
+				{
+					this._Life = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Vision", DbType="Bit NOT NULL")]
+		public bool Vision
+		{
+			get
+			{
+				return this._Vision;
+			}
+			set
+			{
+				if ((this._Vision != value))
+				{
+					this._Vision = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Disability", DbType="Bit NOT NULL")]
+		public bool Disability
+		{
+			get
+			{
+				return this._Disability;
+			}
+			set
+			{
+				if ((this._Disability != value))
+				{
+					this._Disability = value;
 				}
 			}
 		}
@@ -235,7 +373,7 @@ namespace ElectronicApp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FirstName", DbType="VarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FirstName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 		public string FirstName
 		{
 			get
@@ -251,7 +389,7 @@ namespace ElectronicApp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastName", DbType="VarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 		public string LastName
 		{
 			get
@@ -263,6 +401,68 @@ namespace ElectronicApp
 				if ((this._LastName != value))
 				{
 					this._LastName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class uspGetClientPlanOptionsResult
+	{
+		
+		private System.Guid _ClientPlanOptionID;
+		
+		private System.Guid _OwnerID;
+		
+		private string _PlanName;
+		
+		public uspGetClientPlanOptionsResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ClientPlanOptionID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid ClientPlanOptionID
+		{
+			get
+			{
+				return this._ClientPlanOptionID;
+			}
+			set
+			{
+				if ((this._ClientPlanOptionID != value))
+				{
+					this._ClientPlanOptionID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OwnerID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid OwnerID
+		{
+			get
+			{
+				return this._OwnerID;
+			}
+			set
+			{
+				if ((this._OwnerID != value))
+				{
+					this._OwnerID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlanName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string PlanName
+		{
+			get
+			{
+				return this._PlanName;
+			}
+			set
+			{
+				if ((this._PlanName != value))
+				{
+					this._PlanName = value;
 				}
 			}
 		}
@@ -389,7 +589,7 @@ namespace ElectronicApp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhoneNumber", DbType="VarChar(15) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhoneNumber", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
 		public string PhoneNumber
 		{
 			get
@@ -405,7 +605,7 @@ namespace ElectronicApp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fax", DbType="VarChar(15)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fax", DbType="VarChar(10)")]
 		public string Fax
 		{
 			get
@@ -438,169 +638,27 @@ namespace ElectronicApp
 		}
 	}
 	
-	public partial class uspGetCarrierOptionsResult
+	public partial class uspDoesEnrolleeExistResult
 	{
 		
-		private System.Guid _CarrierID;
+		private System.Guid _EnrolleeID;
 		
-		private string _Name;
-		
-		public uspGetCarrierOptionsResult()
+		public uspDoesEnrolleeExistResult()
 		{
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CarrierID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid CarrierID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EnrolleeID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid EnrolleeID
 		{
 			get
 			{
-				return this._CarrierID;
+				return this._EnrolleeID;
 			}
 			set
 			{
-				if ((this._CarrierID != value))
+				if ((this._EnrolleeID != value))
 				{
-					this._CarrierID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this._Name = value;
-				}
-			}
-		}
-	}
-	
-	public partial class uspGetClientByIDResult
-	{
-		
-		private System.Guid _ClientID;
-		
-		private System.Guid _OwnerID;
-		
-		private string _EmployerName;
-		
-		private string _TaxID;
-		
-		public uspGetClientByIDResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ClientID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid ClientID
-		{
-			get
-			{
-				return this._ClientID;
-			}
-			set
-			{
-				if ((this._ClientID != value))
-				{
-					this._ClientID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OwnerID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid OwnerID
-		{
-			get
-			{
-				return this._OwnerID;
-			}
-			set
-			{
-				if ((this._OwnerID != value))
-				{
-					this._OwnerID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmployerName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string EmployerName
-		{
-			get
-			{
-				return this._EmployerName;
-			}
-			set
-			{
-				if ((this._EmployerName != value))
-				{
-					this._EmployerName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TaxID", DbType="VarChar(100)")]
-		public string TaxID
-		{
-			get
-			{
-				return this._TaxID;
-			}
-			set
-			{
-				if ((this._TaxID != value))
-				{
-					this._TaxID = value;
-				}
-			}
-		}
-	}
-	
-	public partial class uspGetClientCarriersResult
-	{
-		
-		private string _carrierName;
-		
-		private System.Guid _carrierID;
-		
-		public uspGetClientCarriersResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_carrierName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string carrierName
-		{
-			get
-			{
-				return this._carrierName;
-			}
-			set
-			{
-				if ((this._carrierName != value))
-				{
-					this._carrierName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_carrierID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid carrierID
-		{
-			get
-			{
-				return this._carrierID;
-			}
-			set
-			{
-				if ((this._carrierID != value))
-				{
-					this._carrierID = value;
+					this._EnrolleeID = value;
 				}
 			}
 		}
@@ -758,153 +816,45 @@ namespace ElectronicApp
 		}
 	}
 	
-	public partial class uspGetClientCoverageOptionsResult
+	public partial class uspGetClientCarriersResult
 	{
 		
-		private System.Guid _OptionsID;
+		private string _carrierName;
 		
-		private System.Guid _OwnerID;
+		private System.Guid _carrierID;
 		
-		private bool _Medical;
-		
-		private bool _Dental;
-		
-		private bool _Life;
-		
-		private bool _Vision;
-		
-		private bool _Disability;
-		
-		private System.Nullable<bool> _SelfFunded;
-		
-		public uspGetClientCoverageOptionsResult()
+		public uspGetClientCarriersResult()
 		{
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OptionsID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid OptionsID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_carrierName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string carrierName
 		{
 			get
 			{
-				return this._OptionsID;
+				return this._carrierName;
 			}
 			set
 			{
-				if ((this._OptionsID != value))
+				if ((this._carrierName != value))
 				{
-					this._OptionsID = value;
+					this._carrierName = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OwnerID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid OwnerID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_carrierID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid carrierID
 		{
 			get
 			{
-				return this._OwnerID;
+				return this._carrierID;
 			}
 			set
 			{
-				if ((this._OwnerID != value))
+				if ((this._carrierID != value))
 				{
-					this._OwnerID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Medical", DbType="Bit NOT NULL")]
-		public bool Medical
-		{
-			get
-			{
-				return this._Medical;
-			}
-			set
-			{
-				if ((this._Medical != value))
-				{
-					this._Medical = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Dental", DbType="Bit NOT NULL")]
-		public bool Dental
-		{
-			get
-			{
-				return this._Dental;
-			}
-			set
-			{
-				if ((this._Dental != value))
-				{
-					this._Dental = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Life", DbType="Bit NOT NULL")]
-		public bool Life
-		{
-			get
-			{
-				return this._Life;
-			}
-			set
-			{
-				if ((this._Life != value))
-				{
-					this._Life = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Vision", DbType="Bit NOT NULL")]
-		public bool Vision
-		{
-			get
-			{
-				return this._Vision;
-			}
-			set
-			{
-				if ((this._Vision != value))
-				{
-					this._Vision = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Disability", DbType="Bit NOT NULL")]
-		public bool Disability
-		{
-			get
-			{
-				return this._Disability;
-			}
-			set
-			{
-				if ((this._Disability != value))
-				{
-					this._Disability = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SelfFunded", DbType="Bit")]
-		public System.Nullable<bool> SelfFunded
-		{
-			get
-			{
-				return this._SelfFunded;
-			}
-			set
-			{
-				if ((this._SelfFunded != value))
-				{
-					this._SelfFunded = value;
+					this._carrierID = value;
 				}
 			}
 		}
@@ -990,31 +940,37 @@ namespace ElectronicApp
 		}
 	}
 	
-	public partial class uspGetClientPlanOptionsResult
+	public partial class uspGetSubmissionsByClientIDResult
 	{
 		
-		private System.Guid _ClientPlanOptionID;
+		private System.Guid _SubmissionID;
 		
 		private System.Guid _OwnerID;
 		
-		private string _PlanName;
+		private string _FileName;
 		
-		public uspGetClientPlanOptionsResult()
+		private string _Extension;
+		
+		private string _AddedBy;
+		
+		private System.DateTime _AddedDate;
+		
+		public uspGetSubmissionsByClientIDResult()
 		{
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ClientPlanOptionID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid ClientPlanOptionID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubmissionID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid SubmissionID
 		{
 			get
 			{
-				return this._ClientPlanOptionID;
+				return this._SubmissionID;
 			}
 			set
 			{
-				if ((this._ClientPlanOptionID != value))
+				if ((this._SubmissionID != value))
 				{
-					this._ClientPlanOptionID = value;
+					this._SubmissionID = value;
 				}
 			}
 		}
@@ -1035,18 +991,66 @@ namespace ElectronicApp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlanName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string PlanName
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FileName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string FileName
 		{
 			get
 			{
-				return this._PlanName;
+				return this._FileName;
 			}
 			set
 			{
-				if ((this._PlanName != value))
+				if ((this._FileName != value))
 				{
-					this._PlanName = value;
+					this._FileName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Extension", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string Extension
+		{
+			get
+			{
+				return this._Extension;
+			}
+			set
+			{
+				if ((this._Extension != value))
+				{
+					this._Extension = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddedBy", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string AddedBy
+		{
+			get
+			{
+				return this._AddedBy;
+			}
+			set
+			{
+				if ((this._AddedBy != value))
+				{
+					this._AddedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime AddedDate
+		{
+			get
+			{
+				return this._AddedDate;
+			}
+			set
+			{
+				if ((this._AddedDate != value))
+				{
+					this._AddedDate = value;
 				}
 			}
 		}
@@ -1204,37 +1208,33 @@ namespace ElectronicApp
 		}
 	}
 	
-	public partial class uspGetSubmissionsByClientIDResult
+	public partial class uspGetClientByIDResult
 	{
 		
-		private System.Guid _SubmissionID;
+		private System.Guid _ClientID;
 		
 		private System.Guid _OwnerID;
 		
-		private string _FileName;
+		private string _EmployerName;
 		
-		private string _Extension;
+		private string _TaxID;
 		
-		private string _AddedBy;
-		
-		private System.DateTime _AddedDate;
-		
-		public uspGetSubmissionsByClientIDResult()
+		public uspGetClientByIDResult()
 		{
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubmissionID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid SubmissionID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ClientID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid ClientID
 		{
 			get
 			{
-				return this._SubmissionID;
+				return this._ClientID;
 			}
 			set
 			{
-				if ((this._SubmissionID != value))
+				if ((this._ClientID != value))
 				{
-					this._SubmissionID = value;
+					this._ClientID = value;
 				}
 			}
 		}
@@ -1255,146 +1255,78 @@ namespace ElectronicApp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FileName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string FileName
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmployerName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string EmployerName
 		{
 			get
 			{
-				return this._FileName;
+				return this._EmployerName;
 			}
 			set
 			{
-				if ((this._FileName != value))
+				if ((this._EmployerName != value))
 				{
-					this._FileName = value;
+					this._EmployerName = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Extension", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
-		public string Extension
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TaxID", DbType="VarChar(100)")]
+		public string TaxID
 		{
 			get
 			{
-				return this._Extension;
+				return this._TaxID;
 			}
 			set
 			{
-				if ((this._Extension != value))
+				if ((this._TaxID != value))
 				{
-					this._Extension = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddedBy", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string AddedBy
-		{
-			get
-			{
-				return this._AddedBy;
-			}
-			set
-			{
-				if ((this._AddedBy != value))
-				{
-					this._AddedBy = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddedDate", DbType="DateTime NOT NULL")]
-		public System.DateTime AddedDate
-		{
-			get
-			{
-				return this._AddedDate;
-			}
-			set
-			{
-				if ((this._AddedDate != value))
-				{
-					this._AddedDate = value;
+					this._TaxID = value;
 				}
 			}
 		}
 	}
 	
-	public partial class uspGetSubmissionsByClientIDBrokerViewResult
+	public partial class uspGetCarrierOptionsResult
 	{
 		
-		private System.Nullable<System.DateTime> _addeddate;
+		private System.Guid _CarrierID;
 		
-		private string _lastname;
+		private string _Name;
 		
-		private string _firstname;
-		
-		private string _birthdate;
-		
-		public uspGetSubmissionsByClientIDBrokerViewResult()
+		public uspGetCarrierOptionsResult()
 		{
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_addeddate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> addeddate
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CarrierID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid CarrierID
 		{
 			get
 			{
-				return this._addeddate;
+				return this._CarrierID;
 			}
 			set
 			{
-				if ((this._addeddate != value))
+				if ((this._CarrierID != value))
 				{
-					this._addeddate = value;
+					this._CarrierID = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lastname", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string lastname
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Name
 		{
 			get
 			{
-				return this._lastname;
+				return this._Name;
 			}
 			set
 			{
-				if ((this._lastname != value))
+				if ((this._Name != value))
 				{
-					this._lastname = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_firstname", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string firstname
-		{
-			get
-			{
-				return this._firstname;
-			}
-			set
-			{
-				if ((this._firstname != value))
-				{
-					this._firstname = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_birthdate", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string birthdate
-		{
-			get
-			{
-				return this._birthdate;
-			}
-			set
-			{
-				if ((this._birthdate != value))
-				{
-					this._birthdate = value;
+					this._Name = value;
 				}
 			}
 		}
